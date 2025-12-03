@@ -1,9 +1,9 @@
-//import processing.sound.*;
+import processing.sound.*;
 final int TotalLevel = 5;
-float[] levelR = {30,50,80,100,130};
+float[] levelR = {20,50,80,110,130};
 ArrayList<Ball> balls;
 Physic physic;
-
+boolean gameWin,gameLose;
 
 
 
@@ -11,7 +11,8 @@ void setup(){
   noStroke();
   size(400,400);
   background(255);
-  
+  gameWin = false;
+  gameLose = false;
   balls = new ArrayList<Ball>();
   physic = new Physic();
 }
@@ -28,10 +29,49 @@ void draw(){
   for (Ball b:balls){
     b.display();
   }
-  
+  checkWin();
+  if(gameWin){
+    text("You Win,press R to restart",200,100);
+  }
+  checkLose();
+  if(gameLose){
+    text("You Lose,press R to restart",200,100);
+  }
 }
 
 void mousePressed(){
-  balls.add(new Ball(mouseX,100,0));
+  if (!gameWin&&!gameLose){
+    balls.add(new Ball(mouseX,140,0));
+  }
+  
 
+}
+
+void checkWin(){
+  int count = 0;
+  for (Ball b:balls){
+    if (b.level== TotalLevel-1){
+      count ++;
+    }
+  }
+  if(count >=3){
+    gameWin = true;
+  }
+}
+
+void checkLose(){
+   for (Ball b: balls) {
+     if (b.pos.y-b.r <= 40){
+       gameLose = true;
+       break;
+     }
+   }
+}
+
+void keyPressed(){
+  if (key == 'r'){
+    balls.clear();
+    gameWin = false;
+    gameLose = false;
+  }
 }

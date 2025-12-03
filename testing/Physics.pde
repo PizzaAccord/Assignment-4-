@@ -9,15 +9,13 @@ class Physic {
   }
   
   void handleBoundaryCollision(Ball b) {
-    //check top collision
+    //check bottom collision
     if (b.pos.y + b.r > height) {
       b.pos.y = height - b.r;
       b.speed.y *= -bounce;
-      b.speed.x *= 0.98;
-      if (abs(b.speed.y) < 0.2) b.speed.y = 0;
     }
     
-    //check bottom collision
+    //check top collision
     if (b.pos.y - b.r < 0) {
       b.pos.y = b.r;
       b.speed.y *= -bounce;
