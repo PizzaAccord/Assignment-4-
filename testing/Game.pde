@@ -1,6 +1,6 @@
 //import processing.sound.*;
 ArrayList<Ball> balls;
-Physics physics;
+Physic physic;
 
 
 
@@ -11,13 +11,21 @@ void setup(){
   background(255);
   
   balls = new ArrayList<Ball>();
-  physics = new Physics();
+  physic = new Physic();
 }
 
 void draw(){
+  for (Ball b:balls){
+    physic.applyGravityToBall(b);
+    b.update();
+    physic.handleBoundaryCollision(b);
+  }
+  physic.handleBallCollisions(balls);
+  
   //set a box, trap all fruit inside.
-  fill(#08C5FC);
-  rect(40,100,320,280);
+  //fill(#08C5FC);
+  //rect(40,100,320,280);
+  background(255);
   for (Ball b:balls){
     b.display();
   }
