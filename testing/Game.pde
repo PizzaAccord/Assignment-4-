@@ -1,4 +1,6 @@
 //import processing.sound.*;
+final int TotalLevel = 5;
+float[] levelR = {20,30,40,50,60};
 ArrayList<Ball> balls;
 Physic physic;
 
@@ -33,6 +35,6 @@ void draw(){
 }
 
 void mousePressed(){
-  balls.add(new Ball(mouseX,100,10));
+  balls.add(new Ball(mouseX,100,0));
 
 }

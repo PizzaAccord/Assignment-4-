@@ -38,7 +38,7 @@ class Physic{
         float dx = b.pos.x - a.pos.x;
         float dy = b.pos.y - a.pos.y;
         float dist = sqrt(dx*dx + dy*dy);
-        float minDist = a.r + b.r;
+        float minDist = a.r/2 + b.r/2;
         
         if (dist < minDist && dist > 0) {
           float overlap = minDist - dist;
