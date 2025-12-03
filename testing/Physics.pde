@@ -48,7 +48,8 @@ class Physic {
         float dx = b.pos.x - a.pos.x;
         float dy = b.pos.y - a.pos.y;
         float dist = sqrt(dx*dx + dy*dy);
-        float minDist = a.r + b.r;
+        //because circle radius = r*2
+        float minDist = a.r /2 + b.r/2;
         
         if (dist > 0 && dist < minDist) {
           float overlap = minDist - dist;
@@ -56,10 +57,10 @@ class Physic {
           float nx = dx / dist;
           float ny = dy / dist;
           
-          a.pos.x -= nx * overlap * 0.5;
-          a.pos.y -= ny * overlap * 0.5;
-          b.pos.x += nx * overlap * 0.5;
-          b.pos.y += ny * overlap * 0.5;
+          a.pos.x -= nx * overlap /2;
+          a.pos.y -= ny * overlap /2;
+          b.pos.x += nx * overlap /2;
+          b.pos.y += ny * overlap /2;
           
           float relVx = b.speed.x - a.speed.x;
           float relVy = b.speed.y - a.speed.y;

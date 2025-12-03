@@ -1,6 +1,6 @@
 //import processing.sound.*;
 final int TotalLevel = 5;
-float[] levelR = {20,30,40,50,60};
+float[] levelR = {30,50,80,100,130};
 ArrayList<Ball> balls;
 Physic physic;
 
@@ -24,9 +24,6 @@ void draw(){
   }
   physic.handleBallCollisions(balls);
   
-  //set a box, trap all fruit inside.
-  //fill(#08C5FC);
-  //rect(40,100,320,280);
   background(255);
   for (Ball b:balls){
     b.display();
