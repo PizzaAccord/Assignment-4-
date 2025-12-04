@@ -14,6 +14,7 @@ void setup(){
   balls = new ArrayList<Ball>();
   physic = new Physic();
   
+  //import sound file
   fileBall= new SoundFile (this, "Ball.mp3");
 }
 
@@ -39,13 +40,14 @@ void draw(){
   }
 }
 
+//generate ball
 void mousePressed(){
   if (!gameWin&&!gameLose){
+    //Ball generated at y 140
     balls.add(new Ball(mouseX,140,0));
   }
-  
-
 }
+
 
 void checkWin(){
   int count = 0;
@@ -68,6 +70,7 @@ void checkLose(){
    }
 }
 
+//Click R to restart the game
 void keyPressed(){
   if (key == 'r'){
     balls.clear();

@@ -2,15 +2,15 @@
 //Ball.mp3
 SoundFile fileBall;
 
-//给球加重力
+//Add gravity to the ball
 class Physic {
-  //当前球的重力时0.4
+  //when the gravity of the current ball is 0.4
   float gravity = 0.4;
-  //弹力为0.3
+  //Elasticity is 0.3
   float bounce = 0.3; 
   float restitution = 0.2;
   
-  //每次都给y的speed加上gravity
+  //add gravity to y's speed every time
   void applyGravityToBall(Ball b) {
     b.speed.y += gravity;
   }
@@ -41,25 +41,27 @@ class Physic {
     }
   }
   
-  //球之间碰撞
+  //Collision between balls
   void handleBallCollisions(ArrayList<Ball> balls) {
+    //Delete two old balls
     ArrayList<Ball> toRemove = new ArrayList<Ball>();
+    //Generate a new big ball
     ArrayList<Ball> toAdd    = new ArrayList<Ball>();
     
     for (int i = 0; i < balls.size(); i++) {
       Ball a = balls.get(i);
-      //当等级相等时，merge新的出来
+      //when the levels are equal, merge the new ones
       for (int j = i + 1; j < balls.size(); j++) {
         Ball b = balls.get(j);
         
-        //检测并防止重叠穿模
+        //Detect and prevent overlap
         float dx = b.pos.x - a.pos.x;
         float dy = b.pos.y - a.pos.y;
         float dist = sqrt(dx*dx + dy*dy);
         //because circle radius = r*2
         float minDist = a.r /2 + b.r/2;
         
-        //条件：当
+        //detection distance
         if (dist > 0 && dist < minDist) {
           float overlap = minDist - dist;
           
@@ -86,9 +88,9 @@ class Physic {
             b.speed.y += impulseY;
           }
           
-            //当两个球等级相等并且不是最大等级时
+            //when two balls have equal levels and are not at their maximum level
           if (a.level == b.level && a.level < TotalLevel-1) {
-            //排除球已经被merge的情况
+            //exclude situation where the ball has already been merged
             if (!toRemove.contains(a) && !toRemove.contains(b)) {
               float newX = (a.pos.x + b.pos.x) /2;
               float newY = (a.pos.y + b.pos.y) /2;
