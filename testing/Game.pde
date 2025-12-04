@@ -5,8 +5,6 @@ ArrayList<Ball> balls;
 Physic physic;
 boolean gameWin,gameLose;
 
-
-
 void setup(){
   noStroke();
   size(400,400);

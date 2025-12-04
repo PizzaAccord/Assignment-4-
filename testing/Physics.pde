@@ -1,3 +1,4 @@
+//给球加重力
 class Physic {
   float gravity = 0.4;
 
