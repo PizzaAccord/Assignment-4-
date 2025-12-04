@@ -1,10 +1,16 @@
+// sound file from https://pixabay.com/sound-effects/search/crush/
+//Ball.mp3
+SoundFile fileBall;
+
 //给球加重力
 class Physic {
+  //当前球的重力时0.4
   float gravity = 0.4;
-
+  //弹力为0.3
   float bounce = 0.3; 
   float restitution = 0.2;
   
+  //每次都给y的speed加上gravity
   void applyGravityToBall(Ball b) {
     b.speed.y += gravity;
   }
@@ -35,14 +41,18 @@ class Physic {
     }
   }
   
+  //球之间碰撞
   void handleBallCollisions(ArrayList<Ball> balls) {
     ArrayList<Ball> toRemove = new ArrayList<Ball>();
     ArrayList<Ball> toAdd    = new ArrayList<Ball>();
     
     for (int i = 0; i < balls.size(); i++) {
       Ball a = balls.get(i);
+      //当等级相等时，merge新的出来
       for (int j = i + 1; j < balls.size(); j++) {
         Ball b = balls.get(j);
+        //加入声音
+        fileBall.play();
         
         float dx = b.pos.x - a.pos.x;
         float dy = b.pos.y - a.pos.y;

@@ -13,6 +13,8 @@ void setup(){
   gameLose = false;
   balls = new ArrayList<Ball>();
   physic = new Physic();
+  
+  fileBall= new SoundFile (this, "Ball.mp3");
 }
 
 void draw(){
