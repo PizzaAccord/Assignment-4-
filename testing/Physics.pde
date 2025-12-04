@@ -51,15 +51,15 @@ class Physic {
       //当等级相等时，merge新的出来
       for (int j = i + 1; j < balls.size(); j++) {
         Ball b = balls.get(j);
-        //加入声音
-        fileBall.play();
         
+        //检测并防止重叠穿模
         float dx = b.pos.x - a.pos.x;
         float dy = b.pos.y - a.pos.y;
         float dist = sqrt(dx*dx + dy*dy);
         //because circle radius = r*2
         float minDist = a.r /2 + b.r/2;
         
+        //条件：当
         if (dist > 0 && dist < minDist) {
           float overlap = minDist - dist;
           
